@@ -1,5 +1,6 @@
-let color = "black";
+let color = "black"; //default color as black
 
+// grabbing the buttons, color picker and slider
 const container = document.querySelector('.container');
 const blackBtn = document.querySelector('.black-btn');
 const rainbowBtn = document.querySelector('.rainbow-btn')
@@ -9,18 +10,19 @@ const clearBtn = document.querySelector('.clear-btn');
 const colorPicker = document.querySelector('#color-picker')
 const slider = document.querySelector("#myRange")
 
+// To display default slider value and make a default grid
 const sliderValue = document.querySelector(".slider-value")
 sliderValue.textContent = `${slider.value} X ${slider.value}`
 createGrid(slider.value);
 
-
+// to update the slider value and grid size
 slider.addEventListener('input', function(e){
     sliderValue.textContent = `${slider.value} X ${slider.value}`
     container.innerHTML = "";
     createGrid(slider.value)
 })
 
-
+// to make all the buttons run their assigned function 
 colorPicker.addEventListener('input', function(e){
     color = e.target.value;
 })
@@ -47,6 +49,7 @@ clearBtn.addEventListener('click', function(){
     createGrid(slider.value)
 })
 
+// to create grid and running mouseover event over each div
 function createGrid(size) {
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
