@@ -1,4 +1,4 @@
-let color = "";
+let color = "black";
 
 const container = document.querySelector('.container');
 const blackBtn = document.querySelector('.black-btn');
@@ -43,6 +43,7 @@ eraserBtn.addEventListener('click', function(){
 
 clearBtn.addEventListener('click', function(){
     container.innerHTML = "";
+    color = "black"
     createGrid(slider.value)
 })
 
@@ -55,7 +56,7 @@ function createGrid(size) {
     for (let i = 0; i < numDivs; i++){
         const div = document.createElement('div');
         container.appendChild(div);
-        
+
         div.addEventListener('mouseover', function(e){
             addColor(e, color)
         })
