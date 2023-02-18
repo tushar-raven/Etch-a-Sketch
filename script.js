@@ -1,4 +1,39 @@
 const container = document.querySelector('.container');
+const blackBtn = document.querySelector('.black-btn');
+const eraserBtn = document.querySelector('.eraser-btn');
+const clearBtn = document.querySelector('.clear-btn');
+const colorPicker = document.querySelector('#color-picker')
+const slider = document.querySelector("#myRange")
+const sliderValue = document.querySelector(".slider-value")
+
+
+
+console.log(slider.value)
+let color = "";
+
+slider.addEventListener('input', function(e){
+    sliderValue.textContent = `${slider.value} X ${slider.value}`
+    container.innerHTML = "";
+    createGrid(slider.value)
+})
+
+colorPicker.addEventListener('input', function(e){
+    color = e.target.value;
+})
+
+blackBtn.addEventListener('click', function(){
+    color = "black";
+})
+
+eraserBtn.addEventListener('click', function(){
+    color = "";
+})
+
+clearBtn.addEventListener('click', function(){
+    container.innerHTML = "";
+    createGrid(slider.value)
+})
+
 
 
 function createGrid(size) {
@@ -10,13 +45,12 @@ function createGrid(size) {
     for (let i = 0; i < numDivs; i++){
         const div = document.createElement('div');
         container.appendChild(div);
-
-        div.addEventListener('mouseover', addColor)
+        div.addEventListener('mouseover', function(e){
+            addColor(e, color)
+        })
     } 
 }
 
-function addColor(e) {
-    e.target.style.backgroundColor = "black";
+function addColor(e, color) {
+    e.target.style.backgroundColor = color;
 }
-
-createGrid(64);
