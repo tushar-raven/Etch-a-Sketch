@@ -10,7 +10,13 @@ function createGrid(size) {
     for (let i = 0; i < numDivs; i++){
         const div = document.createElement('div');
         container.appendChild(div);
-    }
+
+        div.addEventListener('mouseover', addColor)
+    } 
+}
+
+function addColor(e) {
+    e.target.style.backgroundColor = "black";
 }
 
 createGrid(64);
