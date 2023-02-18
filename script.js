@@ -66,11 +66,12 @@ function createGrid(size) {
     } 
 }
 
-
+// to store mouse is clicked or not in a variable
 let isMouseDown;
 document.addEventListener('mousedown', () => isMouseDown = true);
 document.addEventListener('mouseup', () => isMouseDown = false);
 
+// check if the mouse is clicked or not and then a nested if-else for shading, rainbow and other cases
 function addColor(e, color) {
     if(!isMouseDown) {
         return
