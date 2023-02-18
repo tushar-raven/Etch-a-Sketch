@@ -1,15 +1,22 @@
+let color = "";
+
+let isMouseDown;
+document.addEventListener('mousedown', () => isMouseDown = true);
+document.addEventListener('mouseup', () => isMouseDown = false);
+
 const container = document.querySelector('.container');
 const blackBtn = document.querySelector('.black-btn');
+const rainbowBtn = document.querySelector('.rainbow-btn')
+const shadingBtn = document.querySelector('.shading-btn');
 const eraserBtn = document.querySelector('.eraser-btn');
 const clearBtn = document.querySelector('.clear-btn');
 const colorPicker = document.querySelector('#color-picker')
 const slider = document.querySelector("#myRange")
 const sliderValue = document.querySelector(".slider-value")
 
+sliderValue.textContent = `${slider.value} X ${slider.value}`
+createGrid(slider.value);
 
-
-console.log(slider.value)
-let color = "";
 
 slider.addEventListener('input', function(e){
     sliderValue.textContent = `${slider.value} X ${slider.value}`
@@ -17,11 +24,21 @@ slider.addEventListener('input', function(e){
     createGrid(slider.value)
 })
 
+
+
 colorPicker.addEventListener('input', function(e){
     color = e.target.value;
 })
 
 blackBtn.addEventListener('click', function(){
+    color = "black";
+})
+
+rainbowBtn.addEventListener('click', function(){
+    color = "rainbow";
+})
+
+shadingBtn.addEventListener('click', function(){
     color = "black";
 })
 
@@ -33,8 +50,6 @@ clearBtn.addEventListener('click', function(){
     container.innerHTML = "";
     createGrid(slider.value)
 })
-
-
 
 function createGrid(size) {
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -52,5 +67,14 @@ function createGrid(size) {
 }
 
 function addColor(e, color) {
-    e.target.style.backgroundColor = color;
+    if(!isMouseDown) {
+        return
+    } else {
+
+        if(color == "rainbow"){
+            e.target.style.backgroundColor = `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+        } else {
+            e.target.style.backgroundColor = color;
+        }
+    }
 }
